@@ -1,0 +1,23 @@
+Key differences between npm and pnpm:
+
+Performance: pnpm is significantly faster and more efficient due to its unique disk storage structure
+Disk Space: pnpm uses hard links and a content-addressable store, saving disk space by not duplicating packages across projects
+Package Management:
+
+
+npm creates a nested node_modules structure
+pnpm creates a flat node_modules structure with symlinks
+
+
+Dependency Resolution:
+
+
+npm allows access to dependencies not listed in package.json
+pnpm enforces strict dependency rules, preventing access to unlisted packages
+
+
+Version Control: pnpm's lockfile (pnpm-lock.yaml) is more deterministic than npm's package-lock.json
+
+Both are package managers that will work for most projects, but pnpm offers better performance and disk space usage.
+
+Make sure that the version of tailwindcss and shadcn are same.
