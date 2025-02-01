@@ -39,3 +39,22 @@ The cn function is a helper that helps combine multiple class names into a singl
 
 TypeScript me interface ye define hota hai ki kis tarah ka data ek component receive karega as a prop.
 
+Firebase configuration refers to the setup details required to initialize and connect your application with Firebase services. This configuration allows your app to use Firebase features such as authentication, Firestore database, storage, and messaging.
+
+This AuthHandler component handles user authentication and stores user data in Firestore when they sign in. It integrates Firebase Firestore, Clerk Authentication, and React Router.
+
+📌 Key Features
+Checks if the user is signed in (isSignedIn)
+
+Uses useAuth() from Clerk to verify authentication.
+Uses useUser() to get the current user’s details.
+Stores user data in Firestore (storeUserData function)
+
+If the user is authenticated and does not already exist in Firestore, their information is stored.
+Uses React Router (useLocation & useNavigate)
+
+Gets the current path (pathname) and navigation function (navigate).
+Ensures the effect runs whenever pathname changes.
+Handles Loading State (useState)
+
+Displays a LoaderPage component while storing data.
