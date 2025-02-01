@@ -37,3 +37,5 @@ Render the Page If Authenticated → If the user is logged in, allow access
 
 The cn function is a helper that helps combine multiple class names into a single string, making it easier to write and manage Tailwind CSS styles dynamically.
 
+TypeScript me interface ye define hota hai ki kis tarah ka data ek component receive karega as a prop.
+
