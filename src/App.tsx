@@ -1,11 +1,35 @@
-import { Button } from "./components/ui/button"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PublicLayout from "@/layout/public-layout";
+import HomePage from "@/routes/home";
+import AuthenticationLayout from "./layout/auth-layout";
+import { SignInPage } from "./routes/sign-in";
+import { SignUpPage } from "./routes/sign-up";
+import ProtectedRoutes from "./layout/protected-routes";
+import MainLayout from "@/layout/main-layout";  
+
 function App() {
   return (
-    <div className='text-red-500'>
-      <Button>Click Me</Button>
-    </div>
-  );
-  
-};
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route element={<PublicLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
 
-export default App
+        {/* Authentication Layout */}
+        <Route element={<AuthenticationLayout />}>
+          <Route path="/signin/*" element={<SignInPage />} />
+          <Route path="/signup/*" element={<SignUpPage />} />
+        </Route>
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoutes>
+          <MainLayout />
+          </ProtectedRoutes>} />
+          {/* add all the protected routes */}
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

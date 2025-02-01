@@ -21,3 +21,19 @@ Version Control: pnpm's lockfile (pnpm-lock.yaml) is more deterministic than npm
 Both are package managers that will work for most projects, but pnpm offers better performance and disk space usage.
 
 Make sure that the version of tailwindcss and shadcn are same.
+
+Why Must .env.local Be in the Root Directory?
+Vite follows a specific order when loading environment variables. It looks for .env files only in the root directory of your project (the same level as vite.config.ts). If your .env.local is inside a subfolder like src/, Vite will not find it.
+
+
+Protected Routes in React
+Protected routes (also called private routes) restrict access to specific pages based on authentication or authorization. Users must meet certain conditions (e.g., be logged in) to access these routes.
+
+🔹 How Protected Routes Work
+Check Authentication → Before rendering a page, check if the user is logged in.
+Redirect If Not Authenticated → If the user isn’t logged in, redirect them to the login page.
+Render the Page If Authenticated → If the user is logged in, allow access
+
+
+The cn function is a helper that helps combine multiple class names into a single string, making it easier to write and manage Tailwind CSS styles dynamically.
+
