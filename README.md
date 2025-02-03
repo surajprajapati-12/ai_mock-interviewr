@@ -93,7 +93,7 @@ pnpm run build
 
 ### Environment Variables
 
-Ensure the following environment variables are set up in your \`.env\` file:
+Ensure the following environment variables are set up in your \`.env.local\` file:
 
 ```
 VITE_FIREBASE_API_KEY=YOUR_API_KEY_REF
