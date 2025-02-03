@@ -39,70 +39,70 @@ React AI Mock Interview is an innovative web application designed to simulate re
 
 1. **Clone this repository:**
 
-   \`\`\`bash
-   git clone https://github.com/Vetrivel-VP/react-typescript-ai-mock-interview-november-2024.git
-   \`\`\`
+   ```bash
+   git clone https://github.com/optimus-prime-01/AI-Mock-Interviewer.git
+   ```
 
 2. **Navigate to the project directory:**
 
-   \`\`\`bash
+   ```bash
    cd react-ai-mock-interview
-   \`\`\`
+   ```
 
 3. **Install dependencies:**
 
    - Install pnpm globally:
    
-     \`\`\`bash
+     ```bash
      npm i -g pnpm
-     \`\`\`
+     ```
 
    - Install the project dependencies:
 
-     \`\`\`bash
+     ```bash
      pnpm install
-     \`\`\`
+     ```
 
 4. **Start the development server:**
 
-   \`\`\`bash
+   ```bash
    pnpm run dev
-   \`\`\`
+   ```
 
 ### Firebase Initialization
 
 1. Initialize Firebase:
 
-   \`\`\`bash
+   ```bash
    firebase init
-   \`\`\`
+   ```
 
 2. Deploy to Firebase:
 
-   \`\`\`bash
+   ```bash
    firebase deploy
-   \`\`\`
+   ```
 
 ### Project Build
 
 To build the project for production:
 
-\`\`\`bash
+```bash
 pnpm run build
-\`\`\`
+```
 
 ### Environment Variables
 
 Ensure the following environment variables are set up in your \`.env\` file:
 
-\`\`\`
+```
 VITE_FIREBASE_API_KEY=YOUR_API_KEY_REF
 VITE_FIREBASE_AUTH_DOMAIN=YOUR_API_KEY_REF
 VITE_FIREBASE_PROJECT_ID=YOUR_API_KEY_REF
 VITE_FIREBASE_STORAGE_BUCKET=YOUR_API_KEY_REF
 VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_API_KEY_REF
 VITE_FIREBASE_APP_ID=YOUR_API_KEY_REF
-\`\`\`
+```
 
 ## Key Features
 
