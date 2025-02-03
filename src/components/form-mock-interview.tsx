@@ -46,7 +46,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export const FormMockInterview = ({ initialData }: FormMockInterview) => {
+ const FormMockInterview = ({ initialData }: FormMockInterview) => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {}, // Default values agar initialData ho to set kar rahe hain
@@ -307,3 +307,4 @@ export const FormMockInterview = ({ initialData }: FormMockInterview) => {
     </div>
   );
 };
+export default FormMockInterview;

@@ -16,7 +16,7 @@ import { TooltipButton } from "@/components/tooltip-button";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { chatSession } from "@/scripts/index";
-import  SaveModal  from "@/components/save-model";
+import  SaveModal from "@/components/save-model";
 import {
   addDoc,
   collection,

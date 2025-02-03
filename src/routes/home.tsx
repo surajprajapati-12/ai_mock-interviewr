@@ -86,7 +86,7 @@ function HomePage() {
         </Marquee>
       </div>
 
-      <Container className="py-8 space-y-8">
+      {/* <Container className="py-8 space-y-8">
         <h2 className="text-xl font-semibold tracking-wide text-gray-800">
           Unleash your potential with personalized AI insights and targeted
           interview practice.
@@ -115,7 +115,7 @@ function HomePage() {
             </Link>
           </div>
         </div>
-      </Container>
+      </Container> */}
 
     </div>
   );

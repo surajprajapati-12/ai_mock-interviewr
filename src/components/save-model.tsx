@@ -7,7 +7,7 @@ interface SaveModalProps {
   loading: boolean;
 }
 
-export const SaveConfirmation = ({
+const SaveConfirmation = ({
   isOpen,
   onClose,
   onConfirm,

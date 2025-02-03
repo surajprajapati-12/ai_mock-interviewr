@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { doc, getDoc, Timestamp } from "firebase/firestore"; // If using Firebase
 import { db } from "@/config/firebase.config";
-import { FormMockInterview } from "@/components/form-mock-interview"; // ✅ Correct for named export
+import  FormMockInterview  from "@/components/form-mock-interview"; // ✅ Correct for named export
 
 
 interface Interview {

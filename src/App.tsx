@@ -11,8 +11,9 @@ import Generate from "./components/generate";
 import Dashboard from "./routes/dashboard";
 import CreateEditPage from "./routes/create-edit-page";
 import MockLoadPage from "./routes/mock-load-page";
-import { FormMockInterview } from "./components/form-mock-interview";
+// import { FormMockInterview } from "./components/form-mock-interview";
 import MockInterviewPage from "./routes/mock-interview-page";
+import Feedback from "./routes/feedback";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="interview/:interviewId" element={<MockLoadPage/>}/>
             <Route path="interview/:interviewId/start" 
             element={<MockInterviewPage/>}/>
+            <Route path="feedback/:interviewId" element={<Feedback />} />
           </Route>
         </Route>
       </Routes>
