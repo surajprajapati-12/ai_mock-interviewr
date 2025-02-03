@@ -1,50 +1,120 @@
-# React + TypeScript + Vite
+echo "# React AI Mock Interview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React AI Mock Interview is an innovative web application designed to simulate real-world mock interviews using AI. With seamless user authentication, an intuitive interface, and integration with advanced AI, this project serves as an invaluable tool for interview preparation.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **AI-Powered Mock Interviews**  
+  Leverage Google Gemini AI to simulate realistic interview scenarios, evaluate responses, and provide personalized feedback.
+  
+- **Seamless Authentication**  
+  User authentication is powered by Clerk, ensuring secure and efficient access control.
 
-## Expanding the ESLint configuration
+- **Intuitive UI**  
+  Built with Shadcn UI, the application boasts a modern and responsive interface for a seamless user experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Data Management**  
+  All user progress, interview analytics, and configurations are stored securely in Google Firebase Firestore.
 
-- Configure the top-level `parserOptions` property like this:
+- **Dynamic Interview Customization**  
+  Customize interviews based on job roles, difficulty levels, and domains.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Frontend:** React.js
+- **Authentication:** Clerk
+- **UI Framework:** Shadcn UI
+- **Database:** Google Firebase Firestore
+- **AI Integration:** Google Gemini AI
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Getting Started
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Prerequisites
+
+- Node.js
+- Firebase account
+- Clerk account
+
+### Installation
+
+1. **Clone this repository:**
+
+   \`\`\`bash
+   git clone https://github.com/Vetrivel-VP/react-typescript-ai-mock-interview-november-2024.git
+   \`\`\`
+
+2. **Navigate to the project directory:**
+
+   \`\`\`bash
+   cd react-ai-mock-interview
+   \`\`\`
+
+3. **Install dependencies:**
+
+   - Install pnpm globally:
+   
+     \`\`\`bash
+     npm i -g pnpm
+     \`\`\`
+
+   - Install the project dependencies:
+
+     \`\`\`bash
+     pnpm install
+     \`\`\`
+
+4. **Start the development server:**
+
+   \`\`\`bash
+   pnpm run dev
+   \`\`\`
+
+### Firebase Initialization
+
+1. Initialize Firebase:
+
+   \`\`\`bash
+   firebase init
+   \`\`\`
+
+2. Deploy to Firebase:
+
+   \`\`\`bash
+   firebase deploy
+   \`\`\`
+
+### Project Build
+
+To build the project for production:
+
+\`\`\`bash
+pnpm run build
+\`\`\`
+
+### Environment Variables
+
+Ensure the following environment variables are set up in your \`.env\` file:
+
+\`\`\`
+VITE_FIREBASE_API_KEY=YOUR_API_KEY_REF
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_API_KEY_REF
+VITE_FIREBASE_PROJECT_ID=YOUR_API_KEY_REF
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_API_KEY_REF
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_API_KEY_REF
+VITE_FIREBASE_APP_ID=YOUR_API_KEY_REF
+\`\`\`
+
+## Key Features
+
+- **AI-Driven Insights**  
+  Provides real-time feedback on your interview performance, highlighting strengths and areas for improvement.
+
+- **User-Friendly Dashboard**  
+  Track your progress, access past interviews, and download detailed performance reports.
+
+- **Interactive Questionnaires**  
+  Engage with diverse question types, including multiple-choice, scenario-based, and technical coding challenges.
+
+## Contributing
+
+We welcome contributions to improve the project. Please feel free to fork the repository, create a pull request, or report any issues you encounter.
