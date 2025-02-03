@@ -1,20 +1,23 @@
+
 import Header from "@/components/header";
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/footer";
-import { Container } from "lucide-react";
 
 const MainLayout = () => {
+  // console.log("MainLayout Rendered");
+  
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <Container className="flex-grow">
+      <div className="container flex-grow mx-auto">
         <main className="flex-grow">
-          <Outlet />
+          <Outlet /> {/* This is where `Generate` or `Dashboard` should load */}
         </main>
-      </Container>
+      </div>
       <Footer />
     </div>
   );
 };
 
 export default MainLayout;
+

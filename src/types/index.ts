@@ -9,3 +9,16 @@ export interface User{
     updateAt:Timestamp|FieldValue;
 
 }
+
+export interface Interview{
+    id:string;
+    position:string;
+    description:string;
+    experience:number;
+    userID:string;
+    techStack:string;
+    question:{question:string;answer:string}[];
+    createdAt:Timestamp;
+    updateAt:Timestamp;
+
+}

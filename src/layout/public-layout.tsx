@@ -14,7 +14,7 @@ function PublicLayout() {
         <Footer/>
 
         
-    </div>
+    </div> 
   )
 }
 

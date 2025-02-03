@@ -58,3 +58,28 @@ Ensures the effect runs whenever pathname changes.
 Handles Loading State (useState)
 
 Displays a LoaderPage component while storing data.
+
+
+Focus on routing , got stuck while rendering dashboard.tsx
+
+useParams is a React Hook from React Router that helps read values from the URL.
+
+const interviewRef = doc(db, "interviews", interviewID);
+🔹 This tells Firestore: "I need the document with ID = interviewID from the interviews collection."
+
+const interviewSnap = await getDoc(interviewRef);
+🔹 This tells Firestore: "Fetch the data from the document I just referenced."
+
+Summary of GEMINI model script:-
+Code Section	Purpose
+Imports (@google/generative-ai)	Loads Google AI functions and safety settings.
+API Key Setup	Retrieves API key securely from environment variables.
+Model Initialization	Initializes Gemini AI model (gemini-1.5-flash).
+Generation Config	Controls temperature, randomness, and output length.
+Safety Filters	Blocks harassment, hate speech, explicit, and dangerous content.
+Chat Session Start	Starts a chat session using the AI model.
+
+The onSnapshot method subscribes to the Firestore collection for real-time updates.
+Whenever data changes (e.g., an interview is added, removed, or modified), onSnapshot will automatically fetch the updated data and reflect it in the component without needing a manual refresh.
+
+useParams is a React Router hook that allows you to access URL parameters from the current route.
