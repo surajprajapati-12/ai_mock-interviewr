@@ -67,7 +67,7 @@ const MockInterviewPage = () => {
         </div>
       </Alert>
 
-      {interview?.questions?.length > 0 && (
+      {(interview?.questions?.length) && (
         <div className="flex flex-col items-start w-full gap-4 mt-4">
           <QuestionSection questions={interview.questions} />
         </div>

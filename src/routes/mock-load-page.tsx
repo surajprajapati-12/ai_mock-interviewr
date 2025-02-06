@@ -7,12 +7,12 @@ import { Interview } from "@/types";
 import { doc, getDoc } from "firebase/firestore";
 import { Lightbulb, Loader, Sparkles, WebcamIcon } from "lucide-react";
 import { useEffect, useState } from "react";  // Importing useEffect from React
-import { data, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import WebCam from "react-webcam";
 function MockLoadPage() {
   const { interviewId } = useParams<{ interviewId: string }>();
   const [interview, setInterview] = useState<Interview | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [isWebCamEnabled, setIsWebCamEnabled] = useState(false);
 
   const navigate = useNavigate();
