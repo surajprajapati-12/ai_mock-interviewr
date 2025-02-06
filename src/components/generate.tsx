@@ -8,7 +8,7 @@ function Generate() {
     return (
         <div className="flex-col md:px-12">
             {/* <h1>Generate Page</h1> Add a heading to check rendering */}
-            <Outlet /> 
+             <Outlet /> {/*  This will render any nested routes  */}
         </div>
     );
 }

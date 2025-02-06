@@ -7,10 +7,11 @@ interface SaveModalProps {
   loading: boolean;
 }
 
+// SaveConfirmation component jo modal show karega
 const SaveConfirmation = ({
-  isOpen,
-  onClose,
-  onConfirm,
+  isOpen, //model open hai ya nhi
+  onClose,  //model close krne ka function 
+  onConfirm, //confirm krne ka function
   loading,
 }: SaveModalProps) => {
   if (!isOpen) return null; // Hide when not open

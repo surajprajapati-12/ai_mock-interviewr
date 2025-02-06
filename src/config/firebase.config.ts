@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase (Avoid multiple initializations)
+// Firebase ko initialize kar rahe hain (agar already initialized hai to fir se nahi karenge)
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 // Initialize Firestore

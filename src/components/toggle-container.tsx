@@ -5,13 +5,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useAuth } from "@clerk/clerk-react";
+// import { useAuth } from "@clerk/clerk-react";
 import { Menu } from "lucide-react";
 import NavigationRoutes from "./navigation-routes";
 import { NavLink } from "react-router-dom";
+//The component renders a toggleable sheet (side panel) that opens when the menu icon (<Menu />) is clicked. This sheet provides a navigation menu for mobile users.
 
 function ToggleContainer() {
-  const { userId } = useAuth();
+  // const { userId } = useAuth();
 
   return (
     <Sheet>

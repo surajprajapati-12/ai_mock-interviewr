@@ -1,25 +1,25 @@
 interface ContainerProps {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode; // children prop, jo React ka special prop hai
+  className?: string; // className optional hai, jo CSS classes dene ka kaam karta hai
 }
 
-// TypeScript me interface ye define hota hai ki kis tarah ka data ek component receive karega as a prop
+// TypeScript mein interface yeh define karta hai ki kis type ka data ek component ko prop ke roop mein milega
 // children: React.ReactNode:
-// What is children?
-// children is a special prop that allows you to pass anything inside the component’s opening and closing tags.
-// What is React.ReactNode?
-// This means that children can be any valid React content: text, numbers, JSX (elements), or even other components.
+// Children kya hota hai? 
+// children ek special prop hai jisme hum kisi bhi cheez ko component ke opening aur closing tags ke beech pass kar sakte hain.
+// React.ReactNode kya hota hai? 
+// React.ReactNode ka matlab hai ki children mein koi bhi valid React content aa sakta hai: text, numbers, JSX elements, ya phir dusre components bhi.
 
 // className?: string:
-// What is className?
-// className is an optional prop that allows you to pass CSS class names to the component's root HTML element.
-  
-function Container({ children, className }: ContainerProps) {  // Fixed type name
-    return (
-      <div className={`container mx-auto px-4 md:px-8 py-4 w-full ${className || ""}`}>
-        {children}
-      </div>
-    );
+// className kya hota hai? 
+// className ek optional prop hai jisme hum component ke root HTML element ko CSS classes de sakte hain.
+
+function Container({ children, className }: ContainerProps) {  // Yahaan hum props ka type define kar rahe hain
+  return (
+    <div className={`container mx-auto px-4 md:px-8 py-4 w-full ${className || ""}`}>
+      {children} {/* Yahaan children ko render kiya ja raha hai */}
+    </div>
+  );
 }
 
-export default Container;
+export default Container; // Yeh Container component ko export kar raha hai

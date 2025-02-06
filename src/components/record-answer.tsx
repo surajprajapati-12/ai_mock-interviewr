@@ -43,33 +43,34 @@ interface AIResponse {
 }
 
 const RecordAnswer = ({
-  question,
-  isWebCam,
-  setIsWebCam,
+  question, // Ye current question hai jo user se pucha ja raha hai
+  isWebCam, // WebCam on/off ka status store karta hai
+  setIsWebCam, // WebCam ka state change karne ka function
 }: RecordAnswerProps) => {
   const {
-    interimResult,
-    isRecording,
-    results,
-    startSpeechToText,
-    stopSpeechToText,
+    interimResult, // Recording ke beech ka temporary result (live text jo capture ho raha hai)
+    isRecording, // Batata hai ki abhi recording chal rahi hai ya nahi
+    results, // Final recorded text ka array
+    startSpeechToText, // Recording start karne ka function
+    stopSpeechToText, // Recording stop karne ka function
   } = useSpeechToText({
-    continuous: true,
-    useLegacyResults: false,
+    continuous: true, // Continuous recording enable karta hai
+    useLegacyResults: false, // Naya result format use karega
   });
 
-  const [userAnswer, setUserAnswer] = useState("");
-  const [isAiGenerating, setIsAiGenerating] = useState(false);
-  const [aiResult, setAiResult] = useState<AIResponse | null>(null);
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const [userAnswer, setUserAnswer] = useState(""); // User ka answer store karne ke liye
+  const [isAiGenerating, setIsAiGenerating] = useState(false); // AI feedback generate ho raha hai ya nahi
+  const [aiResult, setAiResult] = useState<AIResponse | null>(null); // AI se aane wala result yaha store hoga
+  const [open, setOpen] = useState(false); // Modal open/close handle karne ke liye
+  const [loading, setLoading] = useState(false); // Saving state track karne ke liye
 
   const { userId } = useAuth();
-  const { interviewId } = useParams();
+  const { interviewId } = useParams(); // URL se interview ka ID nikalna
 
   const recordUserAnswer = async () => {
     if (isRecording) {
-      stopSpeechToText();
+      stopSpeechToText();  // Recording band kar do
 
       if (userAnswer?.length < 30) {
         toast.error("Error", {
@@ -78,16 +79,18 @@ const RecordAnswer = ({
 
         return;
       }
-
+      
+      
+       // AI se answer evaluate karwao
       const aiResult = await generateResult(
         question.question,
         question.answer,
         userAnswer
       );
 
-      setAiResult(aiResult);
+      setAiResult(aiResult);  // AI ka result state me daal do
     } else {
-      startSpeechToText();
+      startSpeechToText(); // Recording chalu kar do
     }
   };
 
@@ -122,9 +125,9 @@ const RecordAnswer = ({
     `;
 
     try {
-      const aiResult = await chatSession.sendMessage(prompt);
+      const aiResult = await chatSession.sendMessage(prompt); // AI se result lo
 
-      const parsedResult: AIResponse = cleanJsonResponse(
+      const parsedResult: AIResponse = cleanJsonResponse(  // JSON parse karke return kar do
         aiResult.response.text()
       );
       return parsedResult;
@@ -135,7 +138,7 @@ const RecordAnswer = ({
       });
       return { ratings: 0, feedback: "Unable to generate feedback" };
     } finally {
-      setIsAiGenerating(false);
+      setIsAiGenerating(false);  // AI processing band
     }
   };
 
@@ -210,13 +213,13 @@ const RecordAnswer = ({
   };
 
   useEffect(() => {
-    // combine all transcripts into a single answers
+    // Jo bhi user bol raha hai usko combine karke ek answer banao
     const combinedTranscripts = results
       .filter((result): result is ResultType => typeof result !== "string")
-      .map((result) => result.transcript)
+      .map((result) => result.transcript)  //extracts the transcript from each result.
       .join(" ");
 
-    setUserAnswer(combinedTranscripts);
+    setUserAnswer(combinedTranscripts);  // Final answer state me daal do
   }, [results]);
 
   return (
@@ -233,11 +236,12 @@ const RecordAnswer = ({
       <div className="w-full h-[400px] md:w-96 flex flex-col items-center justify-center border p-4 bg-gray-50 rounded-md">
         {isWebCam ? (
           <WebCam
-            onUserMedia={() => setIsWebCam(true)}
-            onUserMediaError={() => setIsWebCam(false)}
+            onUserMedia={() => setIsWebCam(true)} // Jab user ka media successfully load hoga, webcam ko on karenge
+            onUserMediaError={() => setIsWebCam(false)} // Agar error ho, webcam ko off karenge
             className="object-cover w-full h-full rounded-md"
           />
         ) : (
+          // Agar webcam off hai, toh webcam ka icon dikhega
           <WebcamIcon className="min-w-24 min-h-24 text-muted-foreground" />
         )}
       </div>
@@ -248,8 +252,11 @@ const RecordAnswer = ({
           content={isWebCam ? "Turn Off" : "Turn On"}
           icon={
             isWebCam ? (
+              
+               // Agar webcam off hai, toh Video icon dikhega
               <VideoOff className="min-w-5 min-h-5" />
             ) : (
+              // Agar webcam off hai, toh Video icon dikhega
               <Video className="min-w-5 min-h-5" />
             )
           }
@@ -278,13 +285,15 @@ const RecordAnswer = ({
           content="Save Result"
           icon={
             isAiGenerating ? (
+              // Agar AI feedback generate ho raha hai, toh Loader icon dikhega
               <Loader className="min-w-5 min-h-5 animate-spin" />
             ) : (
+              // Agar AI feedback ready hai, toh Save icon dikhega
               <Save className="min-w-5 min-h-5" />
             )
           }
-          onClick={() => setOpen(!open)}
-          disbaled={!aiResult}
+          onClick={() => setOpen(!open)} // Save modal open ya close karne ke liye
+          disbaled={!aiResult}  // Agar AI result available nahi hai, toh button disabled hoga
         />
       </div>
 
@@ -293,7 +302,7 @@ const RecordAnswer = ({
         <p className="mt-2 text-sm text-gray-700 whitespace-normal">
           {userAnswer || "Start recording to see your ansewer here"}
         </p>
-
+          {/* Agar interim result (live speech) available hai toh show karega */}
         {interimResult && (
           <p className="mt-2 text-sm text-gray-500">
             <strong>Current Speech:</strong>

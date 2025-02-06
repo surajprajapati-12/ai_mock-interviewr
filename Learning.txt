@@ -89,3 +89,9 @@ The `AuthHandler` component manages user authentication and stores user data in 
 | **Chat Session Start** | Begins a chat session using the AI model. |  
 
 ---
+
+
+The Container component ensures a consistent, centered layout with flexible customization, making it easier to build a responsive and maintainable UI structure.
+
+The Outlet component is used in React Router to render child routes inside a parent route. In this case, any child routes of the /generate path will be rendered where the <Outlet /> is placed.
+If there's a route like /generate/subroute, the component corresponding to subroute will be rendered in place of the <Outlet />.

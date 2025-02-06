@@ -1,4 +1,4 @@
-import { MainRoutes } from "@/lib/helper";
+import { MainRoutes } from "@/lib/helper"; // Main route has a href (for navigation) and a label (to display in the navigation).
 import { NavLink } from "react-router-dom";
 
 interface NavigationRoutesProps {

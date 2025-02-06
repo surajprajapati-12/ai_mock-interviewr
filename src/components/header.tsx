@@ -58,7 +58,7 @@ import ToggleContainer from "./toggle-container";
 
 function Header() {
     const { userId } = useAuth();
-    console.log("Header Rendered, userId:", userId);
+    // console.log("Header Rendered, userId:", userId);
 
     return (
         <header className="w-full transition-all duration-150 ease-in-out border-b">
@@ -70,7 +70,8 @@ function Header() {
                     {/* navigation section */}
                     <nav className="items-center hidden gap-3 md:flex">
                         <NavigationRoutes />
-                        {userId && (
+                         {/* If user is authenticated, show the 'Take an Interview' link */}
+                        {userId && ( 
                             <NavLink
                                 to="/generate"
                                 className={({ isActive }) =>

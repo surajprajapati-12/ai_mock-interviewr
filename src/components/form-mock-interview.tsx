@@ -2,7 +2,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { Interview } from "@/types";
+// import { Interview } from "@/types";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/clerk-react";
@@ -44,31 +44,34 @@ const formSchema = z.object({
   techStack: z.string().min(1, "Tech stack must be at least a character"), // Tech stack ka input hona chahiye
 });
 
+
+// Form ka validation schema zod se define kiya hai
 type FormData = z.infer<typeof formSchema>;
 
  const FormMockInterview = ({ initialData }: FormMockInterview) => {
+  // useForm hook ka use karke form ka state manage kar rahe hain
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema), // Validation ke liye zod ka resolver use kiya hai
     defaultValues: initialData || {}, // Default values agar initialData ho to set kar rahe hain
   });
 
-  const { isValid, isSubmitting } = form.formState;
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const { userId } = useAuth();
+  const { isValid, isSubmitting } = form.formState; // Form ke validation aur submission state ko track kar rahe hain
+  const [isLoading, setIsLoading] = useState(false); // Loading state manage karne ke liye
+  const navigate = useNavigate(); // Navigation handle karne ke liye
+  const { userId } = useAuth(); // Logged-in user ka ID fetch kar rahe hain
 
   const title = initialData ? initialData.position : "Create a new mock interview";
   const breadCrumpPage = initialData ? initialData?.position : "Create";
-  const actions = initialData ? "Save Changes" : "Create";
+  const actions = initialData ? "Save Changes" : "Create"; // Button text ko dynamically set kar rahe hain
   const toastMessage = initialData
     ? { title: "Updated..!", description: "Changes saved successfully..." }
     : { title: "Created..!", description: "New Mock Interview created..." };
 
   // AI response ko clean karne ki helper function
   const cleanJsonResponse = (responseText: string) => {
-    let cleanText = responseText.trim();
-    cleanText = cleanText.replace(/(json|```|`)/g, "");
-    const jsonArrayMatch = cleanText.match(/\[.*\]/s);
+    let cleanText = responseText.trim(); //Pehle responseText ke leading aur trailing spaces ko hata dete hain.
+    cleanText = cleanText.replace(/(json|```|`)/g, ""); //removing unwanted character by replace function
+    const jsonArrayMatch = cleanText.match(/\[.*\]/s);  //extracting json using regex
     if (jsonArrayMatch) {
       cleanText = jsonArrayMatch[0];
     } else {
@@ -93,13 +96,14 @@ type FormData = z.infer<typeof formSchema>;
       ]
 
       Job Information:
-      - Job Position: ${data?.position}
+      - Job Position: ${data?.position}   
       - Job Description: ${data?.description}
       - Years of Experience Required: ${data?.experience}
       - Tech Stacks: ${data?.techStack}
     `;
+    //OnSubmit se data aa rha hai
 
-    const aiResult = await chatSession.sendMessage(prompt);
+    const aiResult = await chatSession.sendMessage(prompt); // chatSession API ko ek prompt bhej rahe hain, jo AI ko interview questions generate karne ke liye guide karega.
     const cleanedResponse = cleanJsonResponse(aiResult.response.text());
 
     return cleanedResponse;
@@ -108,7 +112,7 @@ type FormData = z.infer<typeof formSchema>;
   // Form ko submit karte waqt jo actions perform karna hai
   const onSubmit = async (data: FormData) => {
     try {
-      setIsLoading(true);
+      setIsLoading(true);  //setloading ko true rakh rhe hai to inform the user that the process is going
 
       if (initialData) {
         // Agar initialData hai toh update karenge
@@ -116,8 +120,8 @@ type FormData = z.infer<typeof formSchema>;
           const aiResult = await generateAiResult(data);
 
           await updateDoc(doc(db, "interviews", initialData?.id), {
-            questions: aiResult,
-            ...data,
+            questions: aiResult, // Updated questions ko set kar rahe hain
+            ...data, //Adding all the form data (position, description, experience, etc.)
             updatedAt: serverTimestamp(),
           });
 
@@ -135,10 +139,10 @@ type FormData = z.infer<typeof formSchema>;
             createdAt: serverTimestamp(),
           });
 
-          const id = interviewRef.id;
+          const id = interviewRef.id; // Newly created document ka ID fetch kar rahe hain
 
           await updateDoc(doc(db, "interviews", id), {
-            id,
+            id, // ID ko update kar rahe hain Firestore mein
             updatedAt: serverTimestamp(),
           });
 
@@ -153,7 +157,7 @@ type FormData = z.infer<typeof formSchema>;
         description: `Something went wrong. Please try again later`,
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Jab process complete ho jaata hai, loading state ko false karte hain
     }
   };
 
@@ -178,11 +182,11 @@ type FormData = z.infer<typeof formSchema>;
       />
 
       <div className="flex items-center justify-between w-full mt-4">
-        <Headings title={title} isSubHeading />
+        <Headings title={title} isSubHeading /> {/* Page ka title display kar rahe hain */}
 
         {initialData && (
           <Button size={"icon"} variant={"ghost"}>
-            <Trash2 className="text-red-500 min-w-4 min-h-4" />
+            <Trash2 className="text-red-500 min-w-4 min-h-4" /> {/* Agar initialData hai, toh delete button dikhayenge */}
           </Button>
         )}
       </div>
@@ -190,16 +194,19 @@ type FormData = z.infer<typeof formSchema>;
       <Separator className="my-4" />
 
       <div className="my-6"></div>
-
-      <FormProvider {...form}>
+        {/* FormProvider se form ka state pass kar rahe hain */}
+      <FormProvider {...form}> 
         <form
+        // Form submit hone par handleSubmit function ko call karenge
           onSubmit={form.handleSubmit(onSubmit)}
+          // This method is used to handle form submission. It ensures that the form is validated before calling the onSubmit function.
           className="flex flex-col items-start justify-start w-full gap-6 p-8 rounded-lg shadow-md "
+
         >
           <FormField
-            control={form.control}
+            control={form.control} //react-hook-form ka control pass kar rahe hain
             name="position"
-            render={({ field }) => (
+            render={({ field }) => ( // Form input field render kar rahe hain
               <FormItem className="w-full space-y-4">
                 <div className="flex items-center justify-between w-full">
                   <FormLabel>Job Role / Job Position</FormLabel>
@@ -208,7 +215,7 @@ type FormData = z.infer<typeof formSchema>;
                 <FormControl>
                   <Input
                     className="h-12"
-                    disabled={isLoading}
+                    disabled={isLoading}  //Input field ko disable kar rahe hain jab form submit ho raha ho
                     placeholder="eg:- Full Stack Developer"
                     {...field}
                   />
@@ -283,10 +290,10 @@ type FormData = z.infer<typeof formSchema>;
 
           <div className="flex items-center justify-end w-full gap-6">
             <Button
-              type="reset"
+              type="reset" //Resets the form 
               size={"sm"}
               variant={"outline"}
-              disabled={isSubmitting || isLoading}
+              disabled={isSubmitting || isLoading} //Disables the button if form is submitting or if isLoading is true
             >
               Reset
             </Button>
@@ -296,7 +303,7 @@ type FormData = z.infer<typeof formSchema>;
               disabled={isSubmitting || !isValid || isLoading}
             >
               {isLoading ? (
-                <Loader className="text-gray-50 animate-spin" />
+                <Loader className="text-gray-50 animate-spin" /> // Show loader spinner when isLoading is true 
               ) : (
                 actions
               )}

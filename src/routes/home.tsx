@@ -3,7 +3,7 @@ import { MarqueImg } from "@/components/marquee-img";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function HomePage() {
   return (

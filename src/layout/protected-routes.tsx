@@ -8,8 +8,8 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isLoaded, isSignedIn } = useAuth(); 
 
-  console.log("Auth Loaded:", isLoaded);
-  console.log("Is Signed In:", isSignedIn);
+  // console.log("Auth Loaded:", isLoaded);
+  // console.log("Is Signed In:", isSignedIn);
 
   if (!isLoaded) {
     return <LoaderPage />;

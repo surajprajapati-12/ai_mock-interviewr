@@ -12,6 +12,7 @@ interface HeadingsProps {
             isSubHeading ? "text-lg md:text-xl" : ""
           }`}
         >
+          {/* isSubHeading: This optional boolean prop determines whether the heading should have a smaller font size (for subheadings). */}
           {title}
         </h2>
         {description && (
